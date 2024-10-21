@@ -8,7 +8,8 @@
 .
 ├── controller/
 ├── dto/
-│   └── request/
+│   ├── request/
+│   └── response/
 ├── entity/
 ├── exception/
 ├── mapper/
@@ -22,6 +23,7 @@
 - `controller/`: Chứa các controller xử lý request từ client.
 - `dto/`: Data Transfer Objects.
   - `request/`: DTO cho các request.
+  - `response/`: DTO cho các response.
 - `entity/`: Chứa các entity class đại diện cho các đối tượng trong database.
 - `exception/`: Chứa các custom exception class.
 - `mapper/`: Chứa các class để map giữa DTO và entity.
@@ -33,7 +35,9 @@
 
 1. **Controllers**: Tạo các REST endpoints trong thư mục `controller/`. Mỗi controller nên xử lý một nhóm chức năng liên quan.
 
-2. **DTOs**: Định nghĩa các DTO trong thư mục `dto/`. Sử dụng thư mục con `request/` cho các DTO liên quan đến request.
+2. **DTOs**: 
+   - Định nghĩa các DTO cho request trong thư mục `dto/request/`.
+   - Định nghĩa các DTO cho response trong thư mục `dto/response/`.
 
 3. **Entities**: Tạo các entity class trong thư mục `entity/`. Mỗi entity nên tương ứng với một bảng trong database.
 
