@@ -15,6 +15,7 @@
 ├── mapper/
 ├── repository/
 ├── service/
+│   └── impl/ 
 └── TaskManagerApplication.java
 ```
 
@@ -29,6 +30,7 @@
 - `mapper/`: Chứa các class để map giữa DTO và entity.
 - `repository/`: Chứa các interface repository để tương tác với database.
 - `service/`: Chứa business logic của ứng dụng.
+  - `impl/`: Chứa các lớp triển khai (implementations) cho các interface trong `service`.
 - `TaskManagerApplication.java`: File chính để khởi động ứng dụng.
 
 ## Hướng dẫn cho Developers
@@ -48,8 +50,28 @@
 6. **Repositories**: Tạo các repository interface trong thư mục `repository/` để định nghĩa các phương thức truy cập dữ liệu.
 
 7. **Services**: Implement business logic trong các service class thuộc thư mục `service/`.
+    - Các class triển khai interface nên được đặt trong thư mục `service/impl/`.
 
 8. **Application**: Sử dụng `TaskManagerApplication.java` làm điểm khởi đầu của ứng dụng.
+
+**Chú ý**
+Tạo file application.yaml trước khi làm việc
+```yaml
+server:
+  port: 8080
+  servlet:
+    context-path: /identity
+
+spring:
+  datasource:
+    url: "jdbc:mysql://localhost:3306/{your_database_name}"
+    username: {Your_database_username}
+    password: {Your_database_password}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+```
 
 Hãy đảm bảo tuân thủ các nguyên tắc SOLID và clean code khi phát triển. Viết unit test cho các component quan trọng để đảm bảo tính ổn định của ứng dụng.
 
