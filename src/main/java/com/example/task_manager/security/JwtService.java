@@ -15,13 +15,12 @@ import lombok.experimental.FieldDefaults;
 import lombok.experimental.NonFinal;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
 import java.util.Date;
-import java.util.StringJoiner;
-import java.util.logging.Logger;
+
 
 @Slf4j
 @Component
@@ -39,10 +38,11 @@ public class JwtService {
         JWSHeader header = new JWSHeader(JWSAlgorithm.HS512);
 
         JWTClaimsSet jwtClaimsSet = new JWTClaimsSet.Builder()
-                .subject(user.getUsername())
+                .subject(user.getEmail())
                 .issueTime(new Date())
                 .expirationTime(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24))
-                .claim("scope", user.getRole())
+                .claim("scope", user.getRole().getName()
+                )
                 .build();
 
         Payload payload = new Payload(jwtClaimsSet.toJSONObject());
@@ -62,10 +62,10 @@ public class JwtService {
         JWSHeader header = new JWSHeader(JWSAlgorithm.HS512);
 
         JWTClaimsSet jwtClaimsSet = new JWTClaimsSet.Builder()
-                .subject(user.getUsername())
+                .subject(user.getEmail())
                 .issueTime(new Date())
                 .expirationTime(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24 * 30))
-                .claim("scope", user.getRole())
+                .claim("scope", user.getRole().getName())
                 .build();
 
         Payload payload = new Payload(jwtClaimsSet.toJSONObject());
