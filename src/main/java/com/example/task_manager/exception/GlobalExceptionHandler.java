@@ -1,7 +1,6 @@
 package com.example.task_manager.exception;
 
-import ch.qos.logback.core.spi.ErrorCodes;
-import com.example.task_manager.dto.request.ApiResponse;
+import com.example.task_manager.dto.response.ApiResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;

@@ -1,4 +1,4 @@
-package com.example.task_manager.dto.request;
+package com.example.task_manager.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
