@@ -71,6 +71,10 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+jwt:
+  secret: {Your secret key}
+admin:
+  password: {Default password for admin}
 ```
 
 Hãy đảm bảo tuân thủ các nguyên tắc SOLID và clean code khi phát triển. Viết unit test cho các component quan trọng để đảm bảo tính ổn định của ứng dụng.
