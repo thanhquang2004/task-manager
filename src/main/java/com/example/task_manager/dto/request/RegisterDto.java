@@ -22,7 +22,6 @@ public class RegisterDto {
     String password;
 
     @NotEmpty(message = "Username is required")
-    @Min(value = 5, message = "Username must be at least 5 characters long")
     String username;
 
     @NotEmpty(message = "Display name is required")

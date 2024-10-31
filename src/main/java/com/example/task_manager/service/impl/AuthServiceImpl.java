@@ -3,9 +3,11 @@ package com.example.task_manager.service.impl;
 import com.example.task_manager.dto.request.AuthDto;
 import com.example.task_manager.dto.request.LoginDto;
 import com.example.task_manager.dto.request.RegisterDto;
+import com.example.task_manager.dto.response.AuthResponse;
 import com.example.task_manager.entity.User;
 import com.example.task_manager.exception.AppException;
 import com.example.task_manager.exception.ErrorCode;
+import com.example.task_manager.mapper.UserMapper;
 import com.example.task_manager.repository.RoleRepository;
 import com.example.task_manager.repository.UserRepository;
 import com.example.task_manager.security.JwtService;
@@ -14,8 +16,6 @@ import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -29,21 +29,37 @@ public class AuthServiceImpl implements AuthService {
     PasswordEncoder passwordEncoder;
     AuthenticationManager authenticationManager;
     JwtService jwtService;
-
+    UserMapper userMapper;
 
 
     @Override
-    public String register(RegisterDto registerDto) {
-        return null;
+    public AuthResponse register(RegisterDto registerDto) {
+        if (userRepository.existsUserByEmail(registerDto.getEmail())) {
+            throw new AppException(ErrorCode.USER_EXIST);
+        }
+
+        User user = userMapper.toUser(registerDto);
+        user.setPassword(passwordEncoder.encode(registerDto.getPassword()));
+
+        user.setRole(roleRepository.findByName("USER"));
+
+        String accessToken = jwtService.generateAccessToken(user);
+        String refreshToken = jwtService.generateRefreshToken(user);
+
+        userRepository.save(user);
+
+        return AuthResponse.builder()
+                .accessToken(accessToken)
+                .refreshToken(refreshToken)
+                .user(userMapper.toUserResponse(user))
+                .build();
     }
 
     @Override
-    public AuthDto login(LoginDto loginDto) {
+    public AuthResponse login(LoginDto loginDto) {
         User user = userRepository.findByEmail(loginDto.getEmail()).orElseThrow(
                 () -> new RuntimeException("User not found with email: " + loginDto.getEmail())
         );
-
-        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder(10);
 
         boolean authenticated = passwordEncoder.matches(loginDto.getPassword(), user.getPassword());
 
@@ -55,11 +71,15 @@ public class AuthServiceImpl implements AuthService {
         String refreshToken = jwtService.generateRefreshToken(user);
 
 
-        return AuthDto.from(user, accessToken, refreshToken);
+        return AuthResponse.builder()
+                .accessToken(accessToken)
+                .refreshToken(refreshToken)
+                .user(userMapper.toUserResponse(user))
+                .build();
     }
 
     @Override
-    public AuthDto refresh(String refreshToken) {
+    public String refresh(String refreshToken) {
         return null;
     }
 
