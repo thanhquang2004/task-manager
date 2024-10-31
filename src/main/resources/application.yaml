@@ -1,7 +1,7 @@
 server:
   port: 8080
   servlet:
-    context-path: /identity
+    context-path: /api
 
 spring:
   datasource:
@@ -12,3 +12,7 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+jwt:
+  secret: "xdk5CbTZYC/3i7k+OhKjvXGadGvjKmDlgnsz4leEm1hsXp3XamwxlSTcikfKJhXG"
+admin:
+  password: "admin"
