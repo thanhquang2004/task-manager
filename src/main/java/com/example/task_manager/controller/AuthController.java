@@ -1,5 +1,6 @@
 package com.example.task_manager.controller;
 
+import com.example.task_manager.dto.request.LoginDto;
 import com.example.task_manager.dto.request.RegisterDto;
 import com.example.task_manager.dto.response.ApiResponse;
 import com.example.task_manager.dto.response.AuthResponse;
@@ -26,5 +27,11 @@ public class AuthController {
     AuthResponse register(@RequestBody @Valid RegisterDto registerDto) {
         log.info("Register request: {}", registerDto);
         return authService.register(registerDto);
+    }
+
+    @PostMapping("/login")
+    AuthResponse login(@RequestBody @Valid LoginDto loginDto) {
+        log.info("Login request: {}", loginDto);
+        return authService.login(loginDto);
     }
 }
