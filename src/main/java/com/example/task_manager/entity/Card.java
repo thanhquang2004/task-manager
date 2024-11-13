@@ -21,7 +21,7 @@ public class Card extends BaseEntity{
     String title;
     String description;
     String cover;
-    boolean isDestroyed;
+    public boolean isDestroyed;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "column_id")
@@ -38,4 +38,5 @@ public class Card extends BaseEntity{
             inverseJoinColumns = @JoinColumn(name = "user_id")
     )
     Set<User> members;
+
 }

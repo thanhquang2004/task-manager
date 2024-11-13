@@ -5,14 +5,16 @@ server:
 
 spring:
   datasource:
-    url: "jdbc:mysql://localhost:3306/task-manager"
-    username: "root"
-    password: "Quang7204@"
+    url: "jdbc:postgresql://localhost:5432/task-manager"
+    username: "postgres"
+    password: "02062004"
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
+
 jwt:
   secret: "xdk5CbTZYC/3i7k+OhKjvXGadGvjKmDlgnsz4leEm1hsXp3XamwxlSTcikfKJhXG"
+
 admin:
   password: "admin"
