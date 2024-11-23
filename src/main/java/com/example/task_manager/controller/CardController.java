@@ -16,18 +16,14 @@ public class CardController {
     @Autowired
     private CardService cardService;
 
-    // API tạo thẻ
     @PostMapping
     public ResponseEntity<ApiResponse<CardResponse>> createCard(@RequestBody CardRequestDto cardRequest) {
-        // Gọi service để tạo thẻ
         CardResponse cardResponse = cardService.createCard(cardRequest);
 
-        // Trả về phản hồi thành công với mã trạng thái HTTP 201 (Created)
         ApiResponse<CardResponse> apiResponse = new ApiResponse<>(HttpStatus.CREATED.value(), "Card created successfully", cardResponse);
         return new ResponseEntity<>(apiResponse, HttpStatus.CREATED);
     }
 
-    // API lấy thẻ theo ID
     @GetMapping("/{id}")
     public ResponseEntity<ApiResponse<CardResponse>> getCardById(@PathVariable String id) {
         CardResponse cardResponse = cardService.getCardById(id);
@@ -35,7 +31,6 @@ public class CardController {
         return ResponseEntity.ok(apiResponse);
     }
 
-    // API cập nhật thẻ theo ID
     @PutMapping("/{id}")
     public ResponseEntity<ApiResponse<CardResponse>> updateCard(@PathVariable String id, @RequestBody CardRequestDto cardRequest) {
         CardResponse cardResponse = cardService.updateCard(id, cardRequest);
@@ -43,11 +38,10 @@ public class CardController {
         return ResponseEntity.ok(apiResponse);
     }
 
-    // API xóa thẻ theo ID
     @DeleteMapping("/{id}")
     public ResponseEntity<ApiResponse<Void>> deleteCard(@PathVariable String id) {
         cardService.deleteCard(id);
         ApiResponse<Void> apiResponse = new ApiResponse<>(HttpStatus.NO_CONTENT.value(), "Card deleted successfully", null);
-        return ResponseEntity.noContent().build(); // Trả về mã trạng thái 204 (No Content)
+        return ResponseEntity.noContent().build();
     }
 }
