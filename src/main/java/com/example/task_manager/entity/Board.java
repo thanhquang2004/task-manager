@@ -1,9 +1,14 @@
 package com.example.task_manager.entity;
 
+
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -14,13 +19,25 @@ import java.util.List;
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Board extends BaseEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     String id;
+
     String title;
+
+    @Column(columnDefinition = "text")
     String description;
+
     String type;
+
     boolean isDestroyed;
+
+    @Column(name = "createdAt", updatable = false)
+    LocalDateTime createdAt;
+
+    @Column(name = "updatedAt")
+    LocalDateTime updatedAt;
 
     @ManyToMany
     @JoinTable(
@@ -29,4 +46,14 @@ public class Board extends BaseEntity {
             inverseJoinColumns = @JoinColumn(name = "user_id")
     )
     List<User> users;
+
+    @PrePersist
+    protected void onCreate() {
+        createdAt = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        updatedAt = LocalDateTime.now();
+    }
 }
