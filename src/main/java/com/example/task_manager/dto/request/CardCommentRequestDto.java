@@ -1,4 +1,4 @@
 package com.example.task_manager.dto.request;
 
-public class CardAttachmentRequest {
+public class CardCommentRequestDto {
 }
