@@ -43,10 +43,22 @@
 		</dependency>
 
 		<!-- PostgreSQL Driver -->
+<!--		<dependency>-->
+<!--			<groupId>org.postgresql</groupId>-->
+<!--			<artifactId>postgresql</artifactId>-->
+<!--			<version>42.5.0</version>-->
+<!--			<scope>runtime</scope>-->
+<!--		</dependency>-->
 		<dependency>
-			<groupId>org.postgresql</groupId>
-			<artifactId>postgresql</artifactId>
-			<version>42.5.0</version>
+			<groupId>javax.persistence</groupId>
+			<artifactId>javax.persistence-api</artifactId>
+			<version>2.2</version> <!-- Hoặc phiên bản mới hơn nếu cần -->
+		</dependency>
+		<!-- Thêm phụ thuộc cho MySQL -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>8.0.33</version> <!-- Thay đổi phiên bản nếu cần -->
 			<scope>runtime</scope>
 		</dependency>
 
