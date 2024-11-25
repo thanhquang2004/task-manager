@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+
 @Entity
 @Data
 @Table(name = "board_members")
@@ -14,6 +15,9 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class BoardMember extends BaseEntity {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    String id;
     @ManyToOne
     @JoinColumn(name = "board_id", nullable = false)
     Board board;

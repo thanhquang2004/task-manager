@@ -1,11 +1,20 @@
-package com.example.task_manager.dto.request;
+package com.example.task_manager.dto.response;
 
 
-public class ColumnRequestDto {
+public class BoardColumnResponseDto {
+    private Long id;
     private String title;
     private Long boardId;
 
     // Getters and Setters
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getTitle() {
         return title;
     }
