@@ -31,27 +31,14 @@ public class Board extends BaseEntity {
 
     boolean isDestroyed;
 
-    @Column(name = "createdAt", updatable = false)
-    LocalDateTime createdAt;
-
-    @Column(name = "updatedAt")
-    LocalDateTime updatedAt;
-
     @ManyToMany
     @JoinTable(
             name = "board_members",
-            joinColumns = @JoinColumn(name = "board_id"),
-            inverseJoinColumns = @JoinColumn(name = "user_id")
+            joinColumns = @JoinColumn(name = "boardId"),
+            inverseJoinColumns = @JoinColumn(name = "userId")
     )
-    List<User> users;
+    List<User> members;
 
-    @PrePersist
-    protected void onCreate() {
-        createdAt = LocalDateTime.now();
-    }
-
-    @PreUpdate
-    protected void onUpdate() {
-        updatedAt = LocalDateTime.now();
-    }
+    @OneToMany(mappedBy = "board",cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    List<ColumnOrder> columnOrders;
 }

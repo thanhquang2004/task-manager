@@ -16,7 +16,7 @@ import java.util.Set;
 public class Card extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private String id;
+    String id;
 
     String title;
     String description;
@@ -24,18 +24,18 @@ public class Card extends BaseEntity{
     public boolean isDestroyed;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "column_id")
+    @JoinColumn(name = "columnId")
     BoardColumn column;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "board_id")
+    @JoinColumn(name = "boardId")
     Board board;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "card_members",
-            joinColumns = @JoinColumn(name = "card_id"),
-            inverseJoinColumns = @JoinColumn(name = "user_id")
+            joinColumns = @JoinColumn(name = "cardId"),
+            inverseJoinColumns = @JoinColumn(name = "userId")
     )
     Set<User> members;
 

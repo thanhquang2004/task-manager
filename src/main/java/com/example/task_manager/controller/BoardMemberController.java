@@ -2,7 +2,7 @@ package com.example.task_manager.controller;
 
 
 import com.example.task_manager.dto.request.BoardMemberRequestDto;
-import com.example.task_manager.dto.response.BoardMemberResponseDto;
+import com.example.task_manager.dto.response.BoardMemberResponse;
 import com.example.task_manager.service.BoardMemberService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,17 +18,17 @@ public class BoardMemberController {
     private BoardMemberService boardMemberService;
 
     @PostMapping
-    public BoardMemberResponseDto addMember(@RequestBody BoardMemberRequestDto request) {
+    public BoardMemberResponse addMember(@RequestBody BoardMemberRequestDto request) {
         return boardMemberService.addMember(request);
     }
 
     @GetMapping
-    public List<BoardMemberResponseDto> getAllMembers() {
+    public List<BoardMemberResponse> getAllMembers() {
         return boardMemberService.getAllMembers();
     }
 
     @PutMapping("/{id}")
-    public BoardMemberResponseDto updateMember(@PathVariable Long id, @RequestBody BoardMemberRequestDto request) {
+    public BoardMemberResponse updateMember(@PathVariable Long id, @RequestBody BoardMemberRequestDto request) {
         return boardMemberService.updateMember(id, request);
     }
 

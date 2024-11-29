@@ -19,10 +19,10 @@ public class CardComment extends BaseEntity {
     String content;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "card_id")
+    @JoinColumn(name = "cardId")
     Card card;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "userId")
     User user;
 }

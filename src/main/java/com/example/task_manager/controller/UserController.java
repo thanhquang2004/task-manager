@@ -1,4 +1,5 @@
 package com.example.task_manager.controller;
+import com.example.task_manager.dto.response.UserResponse;
 import com.example.task_manager.entity.User;
 import com.example.task_manager.mapper.UserMapper;
 
@@ -22,7 +23,7 @@ public class UserController {
     UserMapper userMapper;
 
     @GetMapping("/getme")
-    User getUse() {
+    UserResponse getUse() {
         var authentication = SecurityContextHolder.getContext().getAuthentication();
 
         log.info("credentials: {}", authentication.getCredentials());

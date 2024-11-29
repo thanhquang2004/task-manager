@@ -5,10 +5,12 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Data
-@Table(name = "board_columns")
+@Table(name = "boardColumns")
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -20,26 +22,14 @@ public class BoardColumn extends BaseEntity {
     String id;
 
     @ManyToOne
-    @JoinColumn(name = "board_id", nullable = false)
+    @JoinColumn(name = "boardId", nullable = false)
     Board board;
 
     String title;
 
-    @Column(name = "createdAt", updatable = false)
-    LocalDateTime createdAt;
-
-    @Column(name = "updatedAt")
-    LocalDateTime updatedAt;
+    @OneToMany(mappedBy = "boardColumn", fetch = FetchType.LAZY)
+    List<CardOrder> cardOrders;
 
     boolean isDestroyed;
 
-    @PrePersist
-    protected void onCreate() {
-        createdAt = LocalDateTime.now();
-    }
-
-    @PreUpdate
-    protected void onUpdate() {
-        updatedAt = LocalDateTime.now();
-    }
 }

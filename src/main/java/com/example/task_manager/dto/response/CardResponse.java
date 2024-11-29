@@ -14,4 +14,6 @@ public class CardResponse {
     private String columnId;
     private String boardId;
     private Set<String> memberIds;
+    private Set<CardCommentResponse> comments;
+    private Set<CardAttachmentResponse> attachments;
 }

@@ -20,14 +20,14 @@ public class Invitation extends BaseEntity{
     boolean isDestroyed;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "board_id")
+    @JoinColumn(name = "boardId")
     Board board;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "inviter_id")
+    @JoinColumn(name = "inviterId")
     User inviter;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "invitee_id")
+    @JoinColumn(name = "inviteeId")
     User invitee;
 }

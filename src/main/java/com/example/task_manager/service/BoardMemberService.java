@@ -1,15 +1,13 @@
 package com.example.task_manager.service;
 
 import com.example.task_manager.dto.request.BoardMemberRequestDto;
-import com.example.task_manager.dto.response.BoardMemberResponseDto;
-import com.example.task_manager.dto.request.BoardMemberRequestDto;
-import com.example.task_manager.dto.response.BoardMemberResponseDto;
+import com.example.task_manager.dto.response.BoardMemberResponse;
 
 import java.util.List;
 
 public interface BoardMemberService {
-    BoardMemberResponseDto addMember(BoardMemberRequestDto request);
-    List<BoardMemberResponseDto> getAllMembers();
-    BoardMemberResponseDto updateMember(Long id, BoardMemberRequestDto request);
+    BoardMemberResponse addMember(BoardMemberRequestDto request);
+    List<BoardMemberResponse> getAllMembers();
+    BoardMemberResponse updateMember(Long id, BoardMemberRequestDto request);
     void removeMember(Long id);
 }

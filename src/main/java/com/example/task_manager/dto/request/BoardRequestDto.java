@@ -1,15 +1,21 @@
 package com.example.task_manager.dto.request;
 
+import com.example.task_manager.entity.User;
+import jakarta.validation.constraints.NotEmpty;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class BoardRequestDto {
-    private String name;
+    @NotEmpty(message = "Board title is required")
+    String title;
 
-    // Getters and Setters
-    public String getName() {
-        return name;
-    }
+    String description;
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    @NotEmpty(message = "Board type is required")
+    String type;
 }

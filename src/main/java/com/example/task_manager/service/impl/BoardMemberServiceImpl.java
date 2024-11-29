@@ -1,7 +1,7 @@
 package com.example.task_manager.service.impl;
 
 import com.example.task_manager.dto.request.BoardMemberRequestDto;
-import com.example.task_manager.dto.response.BoardMemberResponseDto;
+import com.example.task_manager.dto.response.BoardMemberResponse;
 import com.example.task_manager.service.BoardMemberService;
 import org.springframework.stereotype.Service;
 
@@ -11,12 +11,12 @@ import java.util.List;
 @Service
 public class BoardMemberServiceImpl implements BoardMemberService {
 
-    private List<BoardMemberResponseDto> members = new ArrayList<>();
+    private List<BoardMemberResponse> members = new ArrayList<>();
 
     @Override
-    public BoardMemberResponseDto addMember(BoardMemberRequestDto request) {
+    public BoardMemberResponse addMember(BoardMemberRequestDto request) {
         // Logic to add a board member
-        BoardMemberResponseDto member = new BoardMemberResponseDto();
+        BoardMemberResponse member = new BoardMemberResponse();
         member.setId((long) (members.size() + 1)); // Tạo ID giả cho thành viên
         member.setMemberName(request.getMemberName());
         member.setBoardId(request.getBoardId());
@@ -25,13 +25,13 @@ public class BoardMemberServiceImpl implements BoardMemberService {
     }
 
     @Override
-    public List<BoardMemberResponseDto> getAllMembers() {
+    public List<BoardMemberResponse> getAllMembers() {
         return members;
     }
 
     @Override
-    public BoardMemberResponseDto updateMember(Long id, BoardMemberRequestDto request) {
-        for (BoardMemberResponseDto member : members) {
+    public BoardMemberResponse updateMember(Long id, BoardMemberRequestDto request) {
+        for (BoardMemberResponse member : members) {
             if (member.getId().equals(id)) {
                 member.setMemberName(request.getMemberName());
                 member.setBoardId(request.getBoardId());

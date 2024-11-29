@@ -18,7 +18,6 @@ public class RegisterDto {
     String email;
 
     @NotEmpty(message = "Password is required")
-    @Min(value = 8, message = "Password must be at least 8 characters long")
     String password;
 
     @NotEmpty(message = "Username is required")

@@ -36,16 +36,16 @@ public class User extends BaseEntity implements UserDetails {
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "board_members",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "board_id")
+            joinColumns = @JoinColumn(name = "userId"),
+            inverseJoinColumns = @JoinColumn(name = "boardId")
     )
     List<Board> boards;
 
     @ManyToMany(fetch = FetchType.EAGER)
             @JoinTable(
                     name = "card_members",
-                    joinColumns = @JoinColumn(name = "user_id"),
-                    inverseJoinColumns = @JoinColumn(name = "card_id")
+                    joinColumns = @JoinColumn(name = "userId"),
+                    inverseJoinColumns = @JoinColumn(name = "cardId")
             )
     Set<Card> cards;
 

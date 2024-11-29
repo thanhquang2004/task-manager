@@ -8,7 +8,10 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class CardAttachmentResponse {
-    String id;
-    String card_id;
+public class BoardMemberResponse {
+    private Long id;
+    private String memberName;
+    private Long boardId;
+
+
 }

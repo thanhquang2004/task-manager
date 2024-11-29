@@ -18,10 +18,10 @@ public class ColumnOrder {
     int position;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "column_id")
+    @JoinColumn(name = "columnId")
     BoardColumn column;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "board_id")
+    @JoinColumn(name = "boardId")
     Board board;
 }
